@@ -114,7 +114,7 @@ SOFTWARE.
           <mergeManifestMode>merge</mergeManifestMode>
           <archive>
             <manifestEntries>
-              <Main-Class>org.eolang.Main</Main-Class>
+              <Main-Class>org.eolang.algo.Main</Main-Class>
             </manifestEntries>
           </archive>
           <descriptorRefs>

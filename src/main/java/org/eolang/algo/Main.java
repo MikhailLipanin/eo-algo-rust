@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package org.eolang;
+package org.eolang.algo;
 
 import java.io.File;
 import java.util.concurrent.Callable;
@@ -56,7 +56,7 @@ public final class Main implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        //...
+        new Transformation(file, eolang).exec();
         return 0;
     }
 
@@ -68,4 +68,5 @@ public final class Main implements Callable<Integer> {
     public static void main(final String[] args) {
         new CommandLine(new Main()).execute(args);
     }
+
 }
