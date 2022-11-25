@@ -3,11 +3,11 @@ name: maven build
 on:
   push:
     branches:
-      - master
+      - master1
     paths-ignore: [ 'README.md', 'LICENSE.txt' ]
   pull_request:
     branches:
-      - master
+      - master1
     paths-ignore: [ 'README.md', 'LICENSE.txt' ]
 jobs:
   test:
