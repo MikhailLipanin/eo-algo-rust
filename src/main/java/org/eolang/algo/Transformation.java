@@ -46,6 +46,7 @@ public final class Transformation {
         - parsing (EO -> XMIR)
         - applying Train<Shift> to XMIR
         - mapping func between EO-line-number and extended XMIR-line-number
+        - downloading objects from reo???
         - ...
         - mapping object that starts in some `line` to `rust` object
          */

@@ -68,22 +68,10 @@ SOFTWARE.
     <system>GitHub</system>
     <url>https://github.com/MikhailLipanin/eo-algo-rust/issues</url>
   </issueManagement>
-  <scm>
-    <connection>scm:git:git@github.com:objectionary/dejump.git</connection>
-    <developerConnection>scm:git:git@github.com:objectionary/dejump.git
-    </developerConnection>
-    <url>https://github.com/MikhailLipanin/eo-algo-rust</url>
-  </scm>
   <ciManagement>
     <system>rultor</system>
     <url>https://www.rultor.com/s/dejump</url>
   </ciManagement>
-  <distributionManagement>
-    <site>
-      <id>github-pages</id>
-      <url>https://github.com/objectionary/dejump</url>
-    </site>
-  </distributionManagement>
   <properties>
     <eolang.version>0.28.11</eolang.version>
   </properties>
@@ -103,6 +91,11 @@ SOFTWARE.
       <artifactId>picocli</artifactId>
       <version>4.7.0</version>
     </dependency>
+    <dependency>
+      <groupId>com.jcabi</groupId>
+      <artifactId>jcabi-manifests</artifactId>
+      <!-- version from parent POM -->
+    </dependency>
   </dependencies>
   <build>
     <plugins>
@@ -115,6 +108,7 @@ SOFTWARE.
           <archive>
             <manifestEntries>
               <Main-Class>org.eolang.algo.Main</Main-Class>
+              <EO-ALGO-Version>${project.version}</EO-ALGO-Version>
             </manifestEntries>
           </archive>
           <descriptorRefs>

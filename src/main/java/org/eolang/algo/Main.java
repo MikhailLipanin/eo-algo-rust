@@ -23,6 +23,7 @@
  */
 package org.eolang.algo;
 
+import com.jcabi.manifests.Manifests;
 import java.io.File;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
@@ -33,10 +34,12 @@ import picocli.CommandLine;
  * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)
  * @since 0.0.1
  */
-@CommandLine.Command(name = "eo-algo-rust",
+@CommandLine.Command(
+    name = "eo-algo-rust",
     mixinStandardHelpOptions = true,
-    version = "Version 0.0.1",
-    description = "Replaces some difficult objects with `rust`")
+    description = "Replaces some difficult objects with `rust`",
+    versionProvider = Main.Version.class
+)
 public final class Main implements Callable<Integer> {
 
     /**
@@ -56,7 +59,7 @@ public final class Main implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        new Transformation(file, eolang).exec();
+        new Transformation(this.file, this.eolang).exec();
         return 0;
     }
 
@@ -67,6 +70,23 @@ public final class Main implements Callable<Integer> {
      */
     public static void main(final String[] args) {
         new CommandLine(new Main()).execute(args);
+    }
+
+    /**
+     * Version.
+     *
+     * @since 0.0.2
+     */
+    static final class Version implements CommandLine.IVersionProvider {
+        @Override
+        public String[] getVersion() {
+            return new String[]{
+                String.format(
+                    "EO-algo-rust version is %s",
+                    Manifests.read("EO-ALGO-Version")
+                ),
+            };
+        }
     }
 
 }
