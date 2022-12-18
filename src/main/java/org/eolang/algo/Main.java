@@ -37,7 +37,7 @@ import picocli.CommandLine;
 @CommandLine.Command(
     name = "eo-algo-rust",
     mixinStandardHelpOptions = true,
-    description = "Replaces some difficult objects with `rust`",
+    description = "Replaces objects with `rust`",
     versionProvider = Main.Version.class
 )
 public final class Main implements Callable<Integer> {
