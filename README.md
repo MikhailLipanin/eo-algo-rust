@@ -20,7 +20,70 @@ separately executed via [Rust](https://www.rust-lang.org/).
 
 ## Example
 
-`TODO`
+Consider the following EO-code:
+
+```
+[] > file
+  [] > eof /bool
+  [] > next /string
+file > f
+memory 0 > a
+goto
+  [g]
+    seq > @
+      at.
+        QQ.txt.sscanf
+          "%d"
+          f.next
+        0
+      if.
+        (t.mod 3).eq 0
+        a.write
+          a.plus
+            t.mul t
+        g.backward
+      if.
+        f.eof
+        g.forward a
+        g.backward
+QQ.io.stdout
+  QQ.txt.sprintf
+    "a = %d"
+    a
+```
+
+Here, the `goto` object can be optimized via the object `rust`:
+
+```
+goto
+  [g]
+    rust
+      """
+      pub fn f(&mut uni: Universe, v: u32) {
+        let t = uni.da("Φ.f.next.Δ")
+          .as_string().parse::<i32>()?;
+        if t % 3 == 0 {
+          let mut a = uni.da("Φ.a.Δ").as_int();
+          a = a + t;
+          let write = u.copy("Φ.a.write");
+          let a0 = u.add();
+          uni.bind(write, a0, "𝛼0");
+          uni.put_int(a0, a);
+          uni.da(format!("𝑣{write}"));
+        } else {
+          uni.da(format!("𝑣{v}.𝛼0.backward"));
+        }
+        let eof = uni.da("Φ.f.eof.Δ").as_bool();
+        if eof {
+          let f = u.copy("𝑣{v}.𝛼0.forward");
+          uni.bind(f, 0, "𝛼0/Φ.a");
+          uni.da(format!("𝑣{f}")!);
+        } else {
+          uni.da(format!("𝑣{v}.𝛼0.backward")!);
+        }
+      }
+      """
+```
 
 ## How to Contribute
 
