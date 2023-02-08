@@ -25,6 +25,7 @@ package org.eolang.algo;
 
 import com.jcabi.manifests.Manifests;
 import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.Callable;
 import picocli.CommandLine;
 
@@ -58,7 +59,7 @@ public final class Main implements Callable<Integer> {
     private File file;
 
     @Override
-    public Integer call() {
+    public Integer call() throws IOException {
         new Transformation(this.file, this.eolang).exec();
         return 0;
     }
